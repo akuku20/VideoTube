@@ -14,6 +14,7 @@ import {VideoService} from "../video.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {NgIf} from "@angular/common";
 import {VideoPlayerComponent} from "../video-player/video-player.component";
+import {VideoDto} from "../../video-dto";
 
 @Component({
   selector: 'app-save-video-details',
@@ -50,12 +51,14 @@ export class SaveVideoDetailsComponent {
   videoUrl!: string;
 
   announcer = inject(LiveAnnouncer);
+  private thumbnailUrl!: string;
 
   constructor(private activatedRoute: ActivatedRoute, private videoService: VideoService,
               private matSnackBar: MatSnackBar) {
     this.videoId = this.activatedRoute.snapshot.params['videoId'];
     this.videoService.getVideo(this.videoId).subscribe(data => {
       this.videoUrl = data.videoUrl;
+      this.thumbnailUrl = data.thumbnailUrl;
     })
     this.saveVideoDetailsForm = new FormGroup({
       title: this.title,
@@ -117,5 +120,23 @@ export class SaveVideoDetailsComponent {
           duration: 5000
         });
       })
+  }
+
+  saveVideo() {
+    const videoMetadata: VideoDto = {
+      'id': this.videoId,
+      'title': this.saveVideoDetailsForm.get('title')?.value,
+      'description': this.saveVideoDetailsForm.get('description')?.value,
+      'tags': this.tags,
+      'videoStatus': this.saveVideoDetailsForm.get('videoStatus')?.value,
+      'videoUrl': this.videoUrl,
+      'thumbnailUrl': this.thumbnailUrl
+    }
+    this.videoService.saveVideo(videoMetadata).subscribe(data => {
+      console.log(data);
+      this.matSnackBar.open('Video metadata saved successfully', 'Ok', {
+        duration: 5000
+      });
+    })
   }
 }
