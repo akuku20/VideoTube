@@ -13,8 +13,8 @@ import {ActivatedRoute} from "@angular/router";
 import {VideoService} from "../video.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {NgIf} from "@angular/common";
-import {VideoPlayerComponent} from "../video-player/video-player.component";
 import {VideoDto} from "../../video-dto";
+import {PlayerComponent} from "../player/player.component";
 
 @Component({
   selector: 'app-save-video-details',
@@ -29,7 +29,7 @@ import {VideoDto} from "../../video-dto";
     MatChipsModule,
     MatIconModule,
     NgIf,
-    VideoPlayerComponent
+    PlayerComponent
   ],
   templateUrl: './save-video-details.component.html',
   styleUrl: './save-video-details.component.css'

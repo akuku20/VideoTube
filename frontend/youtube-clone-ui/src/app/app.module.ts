@@ -20,7 +20,6 @@ import { AuthModule } from 'angular-auth-oidc-client';
 
 @NgModule({
   declarations: [
-
   ],
   imports: [
     NgFor,

@@ -1,0 +1,13 @@
+.video-details{
+    margin-top: 20px;
+    margin-bottom: 5px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 0 5px #ccc;
+}
+
+.title{
+    margin-top: 10px;
+}
