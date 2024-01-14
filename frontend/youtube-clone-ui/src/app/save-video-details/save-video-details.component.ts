@@ -49,6 +49,7 @@ export class SaveVideoDetailsComponent {
   videoId = '';
   fileSelected = false;
   videoUrl!: string;
+  videoAvailable = false;
 
   announcer = inject(LiveAnnouncer);
   private thumbnailUrl!: string;
@@ -59,6 +60,7 @@ export class SaveVideoDetailsComponent {
     this.videoService.getVideo(this.videoId).subscribe(data => {
       this.videoUrl = data.videoUrl;
       this.thumbnailUrl = data.thumbnailUrl;
+      this.videoAvailable = true;
     })
     this.saveVideoDetailsForm = new FormGroup({
       title: this.title,
